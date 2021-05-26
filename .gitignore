@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+#remove application properties
 .application.properties
 
 ### STS ###
