@@ -12,17 +12,20 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "tasks")
-public class Task extends BaseEntity{
+@Table(name = "projects")
+public class Project extends BaseEntity{
 
     @Column(name = "name")
     private String name;
 
+    @Column(name = "name")
+    private String description;
+
     @Column(name = "status", columnDefinition = "varchar(255) default 'Created'")
     private String status;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "client")
+    private String client;
 
     @Column(name = "created_date")
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
@@ -34,9 +37,5 @@ public class Task extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User assignedByUser;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User assignedToUser;
+    private User userResponsible;
 }

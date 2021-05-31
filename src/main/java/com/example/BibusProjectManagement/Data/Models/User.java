@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -43,6 +45,24 @@ public class User extends BaseEntity implements UserDetails {
             )
     )
     private Set<Role> authorities;
+
+    @OneToMany(
+            mappedBy = "assignedByUser",
+            cascade = CascadeType.ALL
+    )
+    private List<Task> tasksAssignedByUser = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "assignedToUser",
+            cascade = CascadeType.ALL
+    )
+    private List<Task> tasksAssignedToUser = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "userResponsible",
+            cascade = CascadeType.ALL
+    )
+    private List<Project> projectsResponsibleFor = new ArrayList<>();
 
     @Override
     @Transient
