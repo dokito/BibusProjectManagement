@@ -64,6 +64,20 @@ public class User extends BaseEntity implements UserDetails {
     )
     private List<Project> projectsResponsibleFor = new ArrayList<>();
 
+    @ManyToMany(targetEntity = Project.class, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "projects_involved",
+            joinColumns = @JoinColumn(
+                    name = "users_id",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "projects_id",
+                    referencedColumnName = "id"
+            )
+    )
+    private List<Project> projectsInvolved = new ArrayList<>();
+
     @Override
     @Transient
     public boolean isAccountNonExpired() {

@@ -7,6 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -38,4 +40,13 @@ public class Project extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User userResponsible;
+
+    @ManyToMany(mappedBy = "projectsInvolved") //this creates a table for Users involved in project
+    private List<User> usersInvolved = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "unfinishedTasksInProject") //this creates a table for Tasks that need to be complete
+    private List<Task> tasksToComplete = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "finishedTasksInProject") //this create a table for Tasks that are finished
+    private List<Task> completedTasks = new ArrayList<>();
 }
