@@ -71,5 +71,5 @@ public class Task extends BaseEntity{
     private List<Project> finishedTasksInProject = new ArrayList<>();
 
     @OneToOne(mappedBy = "taskToComplete")
-    private BuisenessTrip buisenessTrip;
+    private BusinessTrip businessTrip;
 }

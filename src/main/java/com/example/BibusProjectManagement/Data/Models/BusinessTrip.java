@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "buiseness_trips")
-public class BuisenessTrip extends BaseEntity{
+public class BusinessTrip extends BaseEntity{
 
     @Column(name = "location")
     private String location;
@@ -38,4 +38,8 @@ public class BuisenessTrip extends BaseEntity{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "task_id", referencedColumnName = "id")
     private Task taskToComplete;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User userOnTheTrip;
 }

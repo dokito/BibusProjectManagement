@@ -78,6 +78,21 @@ public class User extends BaseEntity implements UserDetails {
     )
     private List<Project> projectsInvolved = new ArrayList<>();
 
+    @OneToOne(mappedBy = "userOnTheTrip")
+    private BusinessTrip businessTrips;
+
+    @OneToMany(
+            mappedBy = "userMonthlyReport",
+            cascade = CascadeType.ALL
+    )
+    private List<MonthlyReport> monthlyReports = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "userOnVacation",
+            cascade = CascadeType.ALL
+    )
+    private List<Vacation> userVacations = new ArrayList<>();
+
     @Override
     @Transient
     public boolean isAccountNonExpired() {
